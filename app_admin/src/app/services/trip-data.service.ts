@@ -10,12 +10,12 @@ import { BROWSER_STORAGE } from '../storage';
 @Injectable()
 export class TripDataService {
 
-  constructor(private http: HttpClient, 
+  constructor(private http: HttpClient,
     @Inject(BROWSER_STORAGE) private storage: Storage) { }
 
   private apiBaseUrl = 'http://localhost:3000/api/';
   private tripUrl = `${this.apiBaseUrl}trips/`;
-  
+ 
   // public addTrip(formData: Trip): Promise<Trip[]> {
   //   console.log('Inside TripDataService#addTrip');
   //   return this.http
@@ -25,7 +25,7 @@ export class TripDataService {
   //     .catch(this.handleError);
   // }
 
-  public addTrip(formData: Trip): Promise<Trip[]> {
+  public addTrip(formData: Trip): Promise<Trip> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.storage.getItem('travlr-token')}`
@@ -78,16 +78,17 @@ export class TripDataService {
       })
     };
     console.log('Inside TripDataService#updateTrip');
+    console.log(httpOptions);
     console.log(formData);
     return this.http
-      .post(this.tripUrl + formData.code, formData, httpOptions)
+      .put(this.tripUrl + formData.code, formData, httpOptions)
       .toPromise()
       .then(response => response as Trip)
       .catch(this.handleError);
   }
 
 
-  private handleError(error: any){
+  private handleError(error: any): Promise<any>{
     console.error('Something has gone wrong', error);
     return Promise.reject(error.message || error);
   }
@@ -102,6 +103,7 @@ export class TripDataService {
 
   private makeAuthApiCall(urlPath: string, user: User): Promise<AuthResponse> {
     const url: string = `${this.apiBaseUrl}/${urlPath}`;
+    console.log(user);
     return this.http
       .post(url, user)
       .toPromise()

@@ -1,7 +1,7 @@
 const { model } = require('mongoose');
 const mongoose = require('mongoose');
 const Trip = mongoose.model('trips');
-const User = mongoose.model('trips');
+const User = mongoose.model('users');
 
 // GET: /trips - list all trips
 const tripsList = async (req, res) => {
@@ -122,14 +122,15 @@ const tripsUpdateTrip = async (req, res) => {
 
 // user 
 const getUser = (req, res, callback) => {
+    console.log(req.payload.email);
     if(req.payload && req.payload.email) {
         User
-            .findOne({ email: req.payload.email })
+            .findOne({ 'email': req.payload.email })
                 .exec((err, user) => {
                     if(!user) {
                         return res
                             .status(404)
-                            .json({ "message": "User not found" });
+                            .json({ "message": "User not found in db" });
                     } else if(err){
                         console.log(err);
                         return res
@@ -141,7 +142,7 @@ const getUser = (req, res, callback) => {
     } else {
         return res
             .status(404)
-            .json({ "message": "User not found" });
+            .json({ "message": "User not found in post" });
     }
 }
 
@@ -149,5 +150,6 @@ module.exports = {
     tripsList,
     tripsFindCode,
     tripsAddTrip,
-    tripsUpdateTrip
+    tripsUpdateTrip,
+    getUser
 };
