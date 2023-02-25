@@ -4,6 +4,7 @@ CS-465 Full Stack Development with MEAN
 # Architecture
 
 In this project we used two types of frontend development, Express HTML for the customer facing page and Angular for the admin page. Express HTML is a template-based system while Angular is a component-based system. Express uses JavaScript while Angular uses TypeScript. Angular was used to build a Single Page application or SPA. This is a page that is dynamically re written for different functions instead of rendering new pages.
+</br>
 The frontend communicates with the backend via an API connected to a MongoDB database. We used a NoSQL database due to its simplicity and flexibility, as well as its speed. Updating schemas and models is much easier using NoSQL when compared to SQL databases because the data is inherently unstructured. 
 
 
