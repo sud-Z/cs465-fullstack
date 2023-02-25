@@ -16,7 +16,7 @@ Another important piece was reusable UI components. This came in the form of han
 
 # Testing
 
-Before Authorization was added, postman was used for API testing. Postman is a simple way to craft API requests and send them off without modifying code in any way. This made API testing a breeze. For simple API requests, GET requests, one could simply type the API request into the address bar and hit enter. This would display the JSON results of your request on the page. 
+Before Authorization was added, postman was used for API testing. Postman is a simple way to craft API requests and send them off without modifying code in any way. This made API testing a breeze. For simple API requests, GET requests, one could simply type the API request into the address bar and hit enter. This will display the JSON results of your request on the page. 
 
 # Reflection
 
